@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v3.6.0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -38,4 +38,4 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add reports/htmlreport.html
           git commit -m "Add Postman collection report" || echo "No changes to commit"
-          git push origin main
+          git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/wanpedroso0/SimplesDental.git HEAD:main
