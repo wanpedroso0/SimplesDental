@@ -1,0 +1,802 @@
+{
+	"info": {
+		"_postman_id": "5d090705-3c0b-4ddd-a389-97c667f29e2b",
+		"name": "Simples Dental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12666379"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login válido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verifica que todos os atributos estão presentes no response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    // Verifica se os atributos base estão presentes\r",
+									"    pm.expect(responseJson).to.have.property('profissionais');\r",
+									"    pm.expect(responseJson).to.have.property('token');\r",
+									"\r",
+									"    // Verifica os atributos do profissional\r",
+									"    const profissional = responseJson.profissionais[0];\r",
+									"    pm.expect(profissional).to.have.property('id');\r",
+									"    pm.expect(profissional).to.have.property('nome');\r",
+									"    pm.expect(profissional).to.have.property('regra');\r",
+									"    pm.expect(profissional).to.have.property('company');\r",
+									"    pm.expect(profissional).to.have.property('user');\r",
+									"\r",
+									"    // Verifica os atributos da empresa\r",
+									"    const company = profissional.company;\r",
+									"    pm.expect(company).to.have.property('id');\r",
+									"    pm.expect(company).to.have.property('nome');\r",
+									"    pm.expect(company).to.have.property('urlMiniaturaLogo');\r",
+									"    pm.expect(company).to.have.property('status');\r",
+									"    pm.expect(company).to.have.property('versao');\r",
+									"\r",
+									"    // Verifica os atributos do usuário\r",
+									"    const user = profissional.user;\r",
+									"    pm.expect(user).to.have.property('id');\r",
+									"    pm.expect(user).to.have.property('token');\r",
+									"    pm.expect(user).to.have.property('tokenMaster');\r",
+									"    pm.expect(user).to.have.property('versao');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/login"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"carlajoana231@gmail.com\",\"password\":\"carlajoana123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.simplesdental.com/loginmultiplo",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"loginmultiplo"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/loginmultiplo' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/login' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  --data-raw '{\"username\":\"carlajoana231@gmail.com\",\"password\":\"carlajoana123\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Login inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verifica que todos os atributos estão presentes no response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseJson).to.have.property('mensagem');\r",
+									"    pm.expect(responseJson).to.have.property('tipo');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/login"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"naoexiste@gmail.com\",\"password\":\"teste123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.simplesdental.com/loginmultiplo",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"loginmultiplo"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/loginmultiplo' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/login' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  --data-raw '{\"username\":\"carlajoana231@gmail.com\",\"password\":\"carlajoana123\"}'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cadastro de Funil",
+			"item": [
+				{
+					"name": "Inclui Funil",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed ReferenceError by defining the response variable\r",
+									"pm.test(\"Verificar que os atributos estão presentes no response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseJson).to.have.property('@id');\r",
+									"    pm.expect(responseJson).to.have.property('audCriadoData');\r",
+									"    pm.expect(responseJson).to.have.property('audCriadoPor');\r",
+									"    pm.expect(responseJson).to.have.property('iDatabases');\r",
+									"    pm.expect(responseJson).to.have.property('versao');\r",
+									"    pm.expect(responseJson).to.have.property('id');\r",
+									"    pm.expect(responseJson).to.have.property('nome');\r",
+									"    pm.expect(responseJson).to.have.property('tipo');\r",
+									"    pm.expect(responseJson).to.have.property('excluido');\r",
+									"});\r",
+									"\r",
+									"// Armazena o valor de 'id' na variável global 'IdFunil'\r",
+									"pm.globals.set(\"IdFunil\", pm.response.json().id);\r",
+									"pm.globals.set(\"@id\", pm.response.json[\"@id\"]);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/vendas"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "X-Canary",
+								"value": "false"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nome\":\"testeW\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.simplesdental.com/crm/pipelines",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"crm",
+								"pipelines"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/crm/pipelines' \\\r\n  -H 'X-AUTH-TOKEN: S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/vendas' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'X-Canary: false' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '{\"nome\":\"testeW\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Funil",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verificar que os atributos estão presentes em cada objeto do response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    responseJson.forEach(item => {\r",
+									"        pm.expect(item).to.have.property('@id');\r",
+									"        pm.expect(item).to.have.property('audCriadoData');\r",
+									"        pm.expect(item).to.have.property('audCriadoPor');\r",
+									"        pm.expect(item).to.have.property('iDatabases');\r",
+									"        pm.expect(item).to.have.property('versao');\r",
+									"        pm.expect(item).to.have.property('id');\r",
+									"        pm.expect(item).to.have.property('nome');\r",
+									"        pm.expect(item).to.have.property('tipo');\r",
+									"        pm.expect(item).to.have.property('excluido');\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/vendas"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "X-Canary",
+								"value": "false"
+							}
+						],
+						"url": {
+							"raw": "https://api.simplesdental.com/crm/pipelines",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"crm",
+								"pipelines"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/crm/pipelines' \\\r\n  -H 'X-AUTH-TOKEN: S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/vendas' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'X-Canary: false'"
+					},
+					"response": []
+				},
+				{
+					"name": "Altera Funil",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verifica que todos os atributos estão presentes no response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseJson).to.have.property('@id');\r",
+									"    pm.expect(responseJson).to.have.property('audCriadoData');\r",
+									"    pm.expect(responseJson).to.have.property('audCriadoPor');\r",
+									"    pm.expect(responseJson).to.have.property('iDatabases');\r",
+									"    pm.expect(responseJson).to.have.property('versao');\r",
+									"    pm.expect(responseJson).to.have.property('id');\r",
+									"    pm.expect(responseJson).to.have.property('nome');\r",
+									"    pm.expect(responseJson).to.have.property('tipo');\r",
+									"    pm.expect(responseJson).to.have.property('excluido');\r",
+									"});\r",
+									"\r",
+									"// Verifica se o 'id' no response é igual ao valor da variável global 'IdFunil'\r",
+									"pm.test(\"Verifica se o id no response é igual ao IdFunil\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const idFunilGlobal = pm.globals.get(\"IdFunil\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/vendas"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "X-Canary",
+								"value": "false"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"audCriadoData\":\"2024-10-01T20:15:33.414+00:00\",\"audCriadoPor\":\"174431\",\"iDatabases\":66282,\"id\":1075082,\"nome\":\"teste alterado\",\"versao\":1,\"tipo\":\"CUSTOMIZAVEL\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.simplesdental.com/crm/pipelines/{{IdFunil}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"crm",
+								"pipelines",
+								"{{IdFunil}}"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/crm/pipelines/1075082' \\\r\n  -X 'PUT' \\\r\n  -H 'X-AUTH-TOKEN: S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/vendas' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'X-Canary: false' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '{\"audCriadoData\":\"2024-10-01T20:15:33.414+00:00\",\"audCriadoPor\":\"174431\",\"iDatabases\":66282,\"id\":1075082,\"nome\":\"teste alterado\",\"versao\":1,\"tipo\":\"CUSTOMIZAVEL\"}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Funil",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verifica se o ID do funil na mensagem é igual ao IdFunil e atributos estão presentes no response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const mensagem = responseJson.mensagem;\r",
+									"\r",
+									"    pm.expect(responseJson).to.have.property('mensagem');\r",
+									"    pm.expect(responseJson).to.have.property('tipo');\r",
+									"    \r",
+									"    // Extrai o número após a palavra \"Funil\"\r",
+									"    const idFunilNaMensagem = mensagem.match(/Funil (\\d+)/)[1];\r",
+									"    \r",
+									"    // Obtém o valor da variável global IdFunil\r",
+									"    const idFunilGlobal = pm.globals.get(\"IdFunil\").toString();\r",
+									"\r",
+									"    pm.expect(idFunilNaMensagem).to.equal(idFunilGlobal);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/vendas"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "X-Canary",
+								"value": "false"
+							}
+						],
+						"url": {
+							"raw": "https://api.simplesdental.com/crm/pipelines/{{IdFunil}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"crm",
+								"pipelines",
+								"{{IdFunil}}"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/crm/pipelines/1071206' \\\r\n  -X 'DELETE' \\\r\n  -H 'X-AUTH-TOKEN: S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/vendas' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'X-Canary: false'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cadastro de Oportunidade",
+			"item": [
+				{
+					"name": "Inclui Oportunidade",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verificar que os atributos estão presentes no response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseJson).to.have.property('@id');\r",
+									"    pm.expect(responseJson).to.have.property('audCriadoData');\r",
+									"    pm.expect(responseJson).to.have.property('audCriadoPor');\r",
+									"    pm.expect(responseJson).to.have.property('iDatabases');\r",
+									"    pm.expect(responseJson).to.have.property('versao');\r",
+									"    pm.expect(responseJson).to.have.property('id');\r",
+									"    \r",
+									"    // Armazenar o valor do atributo 'id' na variável IdOportunidade\r",
+									"    const IdOportunidade = responseJson.id;\r",
+									"    pm.globals.set(\"IdOportunidade\", IdOportunidade);\r",
+									"    \r",
+									"    pm.expect(responseJson).to.have.property('crmPipelineStage');\r",
+									"    pm.expect(responseJson).to.have.property('profissional');\r",
+									"    pm.expect(responseJson).to.have.property('titulo');\r",
+									"    pm.expect(responseJson).to.have.property('descricao');\r",
+									"    pm.expect(responseJson).to.have.property('origemTipo');\r",
+									"    pm.expect(responseJson).to.have.property('posicao');\r",
+									"    pm.expect(responseJson).to.have.property('excluido');\r",
+									"    pm.expect(responseJson).to.have.property('tituloDinamico');\r",
+									"    pm.expect(responseJson).to.have.property('descricaoDinamica');\r",
+									"    pm.expect(responseJson).to.have.property('origemConsulta');\r",
+									"    pm.expect(responseJson).to.have.property('origemOrcamento');\r",
+									"    \r",
+									"    // Verifica os atributos dentro de crmPipelineStage\r",
+									"    const crmPipelineStage = responseJson.crmPipelineStage;\r",
+									"    pm.expect(crmPipelineStage).to.have.property('audCriadoData');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('audCriadoPor');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('audModificadoData');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('audModificadoPor');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('iDatabases');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('versao');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('id');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('crmPipeline');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('tipo');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('nome');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('posicao');\r",
+									"    pm.expect(crmPipelineStage).to.have.property('excluido');\r",
+									"    \r",
+									"    // Verifica os atributos dentro de crmPipeline\r",
+									"    const crmPipeline = crmPipelineStage.crmPipeline;\r",
+									"    pm.expect(crmPipeline).to.have.property('id');\r",
+									"\r",
+									"    // Verifica os atributos dentro de profissional\r",
+									"    const profissional = responseJson.profissional;\r",
+									"    pm.expect(profissional).to.have.property('@id');\r",
+									"    pm.expect(profissional).to.have.property('atendeMaisConsultas');\r",
+									"    pm.expect(profissional).to.have.property('ativo');\r",
+									"    pm.expect(profissional).to.have.property('id');\r",
+									"    pm.expect(profissional).to.have.property('podeAcessarImagens');\r",
+									"    pm.expect(profissional).to.have.property('rolesDTO');\r",
+									"    pm.expect(profissional).to.have.property('modulos');\r",
+									"    pm.expect(profissional).to.have.property('status');\r",
+									"    pm.expect(profissional).to.have.property('appPushNotificationsEnabled');\r",
+									"    pm.expect(profissional).to.have.property('hasComissoesRegras');\r",
+									"    pm.expect(profissional).to.have.property('expired');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/vendas"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "X-Canary",
+								"value": "false"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"origemTipo\":\"PERSONALIZADO\",\"titulo\":\"teste W\",\"descricao\":\"teste W\",\"crmPipelineStage\":{\"id\":28064},\"profissional\":{\"id\":169952},\"paciente\":null,\"rotulo\":null}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.simplesdental.com/crm/card",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"crm",
+								"card"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/crm/card' \\\r\n  -H 'X-AUTH-TOKEN: S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/vendas' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'X-Canary: false' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '{\"origemTipo\":\"PERSONALIZADO\",\"titulo\":\"teste W\",\"descricao\":\"teste W\",\"crmPipelineStage\":{\"id\":28064},\"profissional\":{\"id\":169952},\"paciente\":null,\"rotulo\":null}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Exclui Oportunidade",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verifica se o ID da oportunidade na mensagem é igual ao IdOportunidade e atributos estão presentes no response\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const mensagem = responseJson.mensagem;\r",
+									"\r",
+									"    // Verifica se os atributos estão presentes\r",
+									"    pm.expect(responseJson).to.have.property('mensagem');\r",
+									"    pm.expect(responseJson).to.have.property('tipo');\r",
+									"    \r",
+									"    // Extrai o número após a palavra \"Card\"\r",
+									"    const idCardNaMensagem = mensagem.match(/Card (\\d+)/);\r",
+									"    pm.expect(idCardNaMensagem).to.not.be.null; // Verifica se a extração foi bem-sucedida\r",
+									"\r",
+									"    const idCardValue = idCardNaMensagem[1]; // O ID extraído da mensagem\r",
+									"\r",
+									"    // Obtém o valor da variável global IdOportunidade\r",
+									"    const iIdOportunidadeGlobal = pm.globals.get(\"IdOportunidade\").toString();\r",
+									"\r",
+									"    // Compara os valores\r",
+									"    pm.expect(idCardValue).to.equal(iIdOportunidadeGlobal);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-AUTH-TOKEN",
+								"value": "S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://app.simplesdental.com/simples/vendas"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "X-Canary",
+								"value": "false"
+							}
+						],
+						"url": {
+							"raw": "https://api.simplesdental.com/crm/card/{{IdOportunidade}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"simplesdental",
+								"com"
+							],
+							"path": [
+								"crm",
+								"card",
+								"{{IdOportunidade}}"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://api.simplesdental.com/crm/card/16442483' \\\r\n  -X 'DELETE' \\\r\n  -H 'X-AUTH-TOKEN: S4fVJ84vDR1C5JTNZE9RpXK3LSvf0XYQtErMoY9NO41bGMfa5fKFMcZPkeSVbE0J' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://app.simplesdental.com/simples/vendas' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'X-Canary: false'"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
