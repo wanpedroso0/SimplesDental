@@ -29,7 +29,7 @@ jobs:
 
       - name: Move Report to Repository
         run: |
-          mkdir -p reports  # Cria a pasta "reports" no repositório
+          mkdir -p reports
           mv ./testResults/htmlreport.html ./reports/htmlreport.html
 
       - name: Commit and Push Report
@@ -38,7 +38,4 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add reports/htmlreport.html
           git commit -m "Add Postman collection report" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/wanpedroso0/SimplesDental.git HEAD:main
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push origin main
