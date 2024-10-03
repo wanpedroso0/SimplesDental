@@ -9,24 +9,26 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Atualizado para a versão 3
+        uses: actions/checkout@v3.4.0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4  # Atualizado para a versão 4
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Atualize para a versão mais recente se necessário
+          node-version: '20'
 
-      - name: Install Newman
-        run: npm install -g newman newman-reporter-html
+      - name: Install Newman and HTML Extra Reporter
+        run: npm install -g newman newman-reporter-html newman-reporter-htmlextra
+
+      - name: Create Results Directory
+        run: mkdir -p testResults
 
       - name: Run Postman Collection
         run: |
           newman run SimplesDental.postman_collection.json \
-          --reporters cli,html \
-          --reporter-html-export newman-report.html
+          -r htmlextra --reporter-htmlextra-export ./testResults/htmlreport.html
 
       - name: Upload Report
-        uses: actions/upload-artifact@v4  # Atualizado para a versão 4
+        uses: actions/upload-artifact@v4
         with:
           name: newman-report
-          path: newman-report.html
+          path: ./testResults/htmlreport.html
