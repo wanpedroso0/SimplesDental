@@ -21,5 +21,5 @@ O workflow disponível neste repositório é chamado **Run Postman Collection**.
 Após a execução do workflow, o relatório gerado será salvo na pasta `reports` do repositório. Para acessá-lo:
 
 1. Navegue até a pasta `reports` no repositório.
-2. Abra o arquivo `htmlreport.html` em um navegador para visualizar o relatório da execução da coleção.
+2. Abra o arquivo `htmlreport.html` **em um navegador** para visualizar o relatório da execução da coleção.
 
