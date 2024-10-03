@@ -37,7 +37,8 @@ jobs:
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
           git add reports/htmlreport.html
-          git commit -m "Add Postman collection report"
-          git push
+          git commit -m "Add Postman collection report" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/wanpedroso0/SimplesDental.git HEAD:main
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
