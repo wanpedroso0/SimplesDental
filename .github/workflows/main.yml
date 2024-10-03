@@ -27,8 +27,17 @@ jobs:
           newman run SimplesDental.postman_collection.json \
           -r htmlextra --reporter-htmlextra-export ./testResults/htmlreport.html
 
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: newman-report
-          path: ./testResults/htmlreport.html
+      - name: Move Report to Repository
+        run: |
+          mkdir -p reports  # Cria a pasta "reports" no repositório
+          mv ./testResults/htmlreport.html ./reports/htmlreport.html
+
+      - name: Commit and Push Report
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add reports/htmlreport.html
+          git commit -m "Add Postman collection report"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
